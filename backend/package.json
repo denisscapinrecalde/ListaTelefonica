@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Serviço de contatos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denisscapinrecalde/ListaTelefonica"
+  },
+  "keywords": [
+    "Angularjs",
+    "javascript",
+    "express",
+    "node"
+  ],
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^3.21.2",
+    "multer": "^1.3.0"
+  },
+  "author": "Denis Scapin",
+  "license": "MIT",
+  "homepage": "https://github.com/denisscapinrecalde/ListaTelefonica"
+}
