@@ -30,19 +30,6 @@
 				 title="Ops,aconteceu um problema!"
 				 message="message"></ui-alert>
 
-		<ui-accordion title="acc1">
-			Conteúdo teste etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc
-			 etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc
-			  etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc
-		</ui-accordion>
-		<ui-accordion title="acc2">
-			Conteúdo teste etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc
-			 etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc
-			  etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc etc
-		</ui-accordion>
-
-		<hr />
-
 		<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você busca?">
 		<table ng-show="contatos.length > 0" class="table">
 			<tr>
@@ -102,10 +89,25 @@
 		</div>
 		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
 		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos</button>
+
+		<hr>
+
+		<ui-accordions>
+			<ui-accordion title="Criado por Denis Scapin">
+				Projeto criado por Denis Scapin para explorar os
+				recursos do AngularJS com bootstrap. <br>
+				O Código está disponível no GIT: <br>
+				<b>https://github.com/denisscapinrecalde/ListaTelefonica</b>
+			</ui-accordion>
+			<ui-accordion title="Sobre o projeto">
+				Nesse projeto podemos ver os principais recursos
+				do AngularJS, como, diretivas, filters, services,
+				factories, configs, values, acesso ao backend com
+				REST e JSON entre outras coisas
+			</ui-accordion>
+		</ui-accordions>
 	</div>
 	<!--div ng-include="'view/footer.html'"></div-->
-	<div style="text-align: center;">
-		Criado por Denis Scapin
-	</div>
+
 </body>
 </html>
