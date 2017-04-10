@@ -15,6 +15,8 @@
 	<script src="js/config/configValue.js"></script>
 	<script src="js/services/serialService.js"></script>
 	<script src="js/config/serialconfig.js"></script>
+	<script src="js/filters/nameFilter.js"></script>
+	<script src="js/filters/ellipsisFilter.js"></script>
 </head>
 <body ng-controller="listaTelefonicaCtrl">
 	<div class="jumbotron">
@@ -34,7 +36,7 @@
 			<tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:{nome: criterioDeBusca} | orderBy: criterioDeOrdenacao : direcaoDaOrdenacao">
 				<td><input type="checkbox" ng-model="contato.selecionado"/></td>
 				<td>{{contato.serial}}</td>
-				<td>{{contato.nome}}</td>
+				<td>{{contato.nome | name | ellipsis }}</td>
 				<td>{{contato.telefone}}</td>
 				<td>{{contato.operadora.nome}}</td>
 				<td>{{contato.data | date:'dd/mm/yyyy'}}</td>
@@ -43,7 +45,7 @@
 		</table>
 		<hr/>
 		<form name="contatoForm">
-			<input class="form-control" type="text" ng-model="contato.nome"  name="nome" placeholder="Nome" ng-required="true" ng-minlength="10"/>
+			<input class="form-control" type="text" ng-model="contato.nome"  name="nome" placeholder="Nome" ng-required="true" ng-minlength="5"/>
 			<input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
 			<select class="form-control" name="operadora" ng-model="contato.operadora" ng-options="operadora.nome + ' (' + (operadora.preco | currency) + ' por minuto)' group by operadora.categoria for operadora in operadoras | orderBy: 'nome'" ng-required="true">
 				<option value="">Selecione uma operadora</option>
@@ -57,7 +59,7 @@
 				Campo nome deve ter no mínimo 10 caracteres
 			</div>
 		</div>
-		
+
 		<div ng-messages="contatoForm.telefone.$error" ng-show="contatoForm.telefone.$invalid" ng-if="contatoForm.telefone.$dirty" class="alert alert-danger">
 			<div  ng-message="required">
 				Por favor, preencha o telefone
