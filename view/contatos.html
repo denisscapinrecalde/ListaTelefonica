@@ -1,4 +1,4 @@
-<div class="jumbotron" ng-controller="listaTelefonicaCtrl">
+<div class="jumbotron">
 
     <h4>{{app}}</h4>
     <br>
@@ -21,7 +21,7 @@
         <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:{nome: criterioDeBusca} | orderBy: criterioDeOrdenacao : direcaoDaOrdenacao">
             <td><input type="checkbox" ng-model="contato.selecionado"/></td>
             <td>{{contato.serial}}</td>
-            <td>{{contato.nome | name | ellipsis }}</td>
+            <td><a href="#/detalhesContato/{{contato.id}}">{{contato.nome | name | ellipsis }}</a></td>
             <td>{{contato.telefone}}</td>
             <td>{{contato.operadora.nome}}</td>
             <td>{{contato.data | date:'dd/mm/yyyy'}}</td>
@@ -29,45 +29,9 @@
         </tr>
     </table>
     <hr/>
-    <form name="contatoForm">
-        <input class="form-control" type="text" ng-model="contato.nome"  name="nome" placeholder="Nome" ng-required="true" ng-minlength="5"/>
-        <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ui-phone ng-pattern="/^\d{4,5}-\d{4}$/"/>
-        <input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date />
-        <select class="form-control" name="operadora" ng-model="contato.operadora" ng-options="operadora.nome + ' (' + (operadora.preco | currency) + ' por minuto)' group by operadora.categoria for operadora in operadoras | orderBy: 'nome'" ng-required="true">
-            <option value="">Selecione uma operadora</option>
-        </select>
-    </form>
-    <div ng-messages="contatoForm.nome.$error" ng-show="contatoForm.nome.$invalid" ng-if="contatoForm.nome.$dirty" class="alert alert-danger">
-        <div ng-message="required">
-        Por favor, preencha o nome
-        </div>
-        <div ng-message="minlength">
-            Campo nome deve ter no mínimo 10 caracteres
-        </div>
-    </div>
 
-    <div ng-messages="contatoForm.telefone.$error" ng-show="contatoForm.telefone.$invalid" ng-if="contatoForm.telefone.$dirty" class="alert alert-danger">
-        <div  ng-message="required">
-            Por favor, preencha o telefone
-        </div>
-        <div ng-message="pattern">
-        Telefone: XXXXX-XXXX
-        </div>
-    </div>
+    <a class="btn btn-primary btn-block" href="#/novoContato">Novo Contato</a>
 
-    <div ng-messages="contatoForm.data.$error" ng-show="contatoForm.data.$invalid" ng-if="contatoForm.data.$dirty" class="alert alert-danger">
-        <div  ng-message="parse">
-            Por favor, preencha a data no formato dd/MM/yyyy
-        </div>
-    </div>
-
-    <div ng-show="contatoForm.operadora.$invalid && contatoForm.operadora.$dirty" class="alert alert-danger">
-        Por favor, preencha a operadora
-    </div>
-    <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
-    <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos</button>
-
-    <hr>
     <ui-accordions>
       <ui-accordion title="Criado por Denis Scapin">
         Projeto criado por Denis Scapin para explorar os
