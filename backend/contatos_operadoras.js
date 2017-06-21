@@ -33,7 +33,7 @@ app.get('/contatos', function(req, res) {
 app.get('/contatos/:id', function(req, res) {
 	contato = contatos[req.params.id];
 	if(contato===undefined){
-		res.statusCode = 204;
+		res.statusCode = 404;
 	}
   res.json(contato);
 });
